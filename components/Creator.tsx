@@ -113,8 +113,14 @@ const Creator: React.FC = () => {
                        <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 hover:bg-white hover:shadow-md transition-all duration-300">
                            <h4 className="font-bold text-slate-800 mb-3 border-l-4 border-indigo-500 pl-3">Web Development</h4>
                            <ul className="space-y-2 text-sm text-slate-600">
-                               <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span> <span>Developed & Managed <span className="font-medium text-indigo-600">cotministries.unaux.com</span></span></li>
-                               <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span> <span>Developed & Managed <span className="font-medium text-indigo-600">good2go.unaux.com</span></span></li>
+                               <li className="flex items-center gap-2">
+                                   <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span> 
+                                   <span>Developed & Managed <a href="http://cotministries.unaux.com" target="_blank" rel="noopener noreferrer" className="font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition-colors decoration-indigo-300">cotministries.unaux.com</a></span>
+                               </li>
+                               <li className="flex items-center gap-2">
+                                   <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span> 
+                                   <span>Developed & Managed <a href="http://good2go.unaux.com" target="_blank" rel="noopener noreferrer" className="font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition-colors decoration-indigo-300">good2go.unaux.com</a></span>
+                               </li>
                                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span> <span>Responsive Design & Content Management</span></li>
                            </ul>
                        </div>
