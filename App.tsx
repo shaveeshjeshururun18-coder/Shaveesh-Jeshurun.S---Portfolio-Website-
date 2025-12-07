@@ -209,47 +209,23 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Bottom Bar: Copyright & MASSIVE Designer Credit */}
-            <div className="py-12 flex flex-col items-center justify-center gap-8">
-               <div className="text-xs text-slate-600 text-center">
+            {/* Bottom Bar: Copyright & PROMINENT Designer Credit */}
+            <div className="py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs">
+               <div className="text-slate-600 text-center md:text-left">
                  &copy; 2025 Prasath Portfolio. All Rights Reserved.
                </div>
 
-               {/* DESIGNER CREDIT - FOCAL POINT - MAGNIFICENT */}
+               {/* DESIGNER CREDIT - BIGGER & BOLD */}
                <button 
                   onClick={() => { setActivePage('creator'); window.scrollTo({top: 0, behavior: 'smooth'}); }}
-                  className="group relative w-full md:w-auto max-w-4xl mx-auto block transform hover:scale-105 transition-all duration-500"
+                  className="group flex flex-col md:flex-row items-center gap-2 md:gap-3 px-6 py-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-teal-500/30 transition-all duration-300 mt-2 md:mt-0"
                >
-                  {/* Outer Glow/Border Gradient */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 via-red-500 to-yellow-500 rounded-3xl blur opacity-20 group-hover:opacity-100 transition duration-700 group-hover:duration-200 animate-gradient-x"></div>
-
-                  {/* Main Card Container */}
-                  <div className="relative px-8 py-10 md:px-20 md:py-14 bg-slate-950 ring-1 ring-white/10 rounded-3xl overflow-hidden flex flex-col items-center justify-center gap-4 hover:ring-orange-500/50 transition-all duration-500">
-                      
-                      {/* Animated Background inside card */}
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
-
-                      {/* Content */}
-                      <span className="text-xs md:text-sm font-mono text-orange-500/80 tracking-[0.5em] uppercase group-hover:text-orange-400 transition-colors text-center z-10">
-                          Architected By
-                      </span>
-
-                      <div className="relative z-10 flex items-center gap-4 md:gap-8 flex-wrap justify-center">
-                          <Code size={40} className="md:w-12 md:h-12 text-slate-700 group-hover:text-orange-500 transition-colors duration-500 group-hover:rotate-12" />
-                          
-                          {/* THE NAME - GLOW & ROTATE */}
-                          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-700 via-slate-500 to-slate-700 group-hover:from-yellow-400 group-hover:via-orange-500 group-hover:to-red-500 transition-all duration-700 tracking-tighter filter group-hover:drop-shadow-[0_0_30px_rgba(249,115,22,0.6)] group-hover:-rotate-2 group-hover:scale-110">
-                            S. Shaveesh Jeshurun
-                          </h2>
-                          
-                          <Star size={40} className="md:w-12 md:h-12 text-slate-700 group-hover:text-yellow-500 transition-colors duration-500 group-hover:-rotate-12 fill-current" />
-                      </div>
-
-                      <div className="mt-6 flex items-center gap-2 text-xs md:text-sm font-bold text-slate-600 group-hover:text-white transition-colors uppercase tracking-widest z-10">
-                         <span className="w-2 h-2 bg-slate-700 group-hover:bg-green-500 rounded-full transition-colors animate-pulse"></span> 
-                         View Developer Profile
-                      </div>
+                  <span className="text-slate-500 text-xs md:text-sm font-bold uppercase tracking-widest group-hover:text-teal-400 transition-colors">Designed by</span>
+                  <div className="flex items-center gap-2">
+                    <Code size={24} className="text-slate-600 group-hover:text-teal-400 transition-colors" />
+                    <span className="font-black text-xl md:text-3xl text-slate-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-teal-400 group-hover:to-blue-500 transition-all duration-300 drop-shadow-sm">
+                      S. Shaveesh Jeshurun
+                    </span>
                   </div>
                </button>
             </div>
