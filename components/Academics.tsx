@@ -226,24 +226,24 @@ const Academics: React.FC = () => {
                 </div>
             </div>
 
-            {/* Stats Overview Grid */}
+            {/* Stats Overview Grid - Optimized for narrow mobile screens */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
-                <StatCard icon={TrendingUp} label="Current Aggregate" value={`${getAggregatePercentage(activeTerm).toFixed(1)}%`} color="text-teal-600" bg="bg-teal-50" />
-                <StatCard icon={Award} label="Score Obtained" value={`${examData[activeTerm].total}/${examData[activeTerm].max}`} color="text-blue-600" bg="bg-blue-50" />
-                <StatCard icon={Activity} label="Performance" value={getAggregatePercentage(activeTerm) > 90 ? 'Exceptional' : 'Outstanding'} color="text-indigo-600" bg="bg-indigo-50" />
-                <StatCard icon={Star} label="Top Subject" value={subjects[examData[activeTerm].marks.indexOf(Math.max(...examData[activeTerm].marks))]} color="text-amber-600" bg="bg-amber-50" />
+                <StatCard icon={TrendingUp} label="Aggregate" value={`${getAggregatePercentage(activeTerm).toFixed(1)}%`} color="text-teal-600" bg="bg-teal-50" />
+                <StatCard icon={Award} label="Score" value={`${examData[activeTerm].total}/${examData[activeTerm].max}`} color="text-blue-600" bg="bg-blue-50" />
+                <StatCard icon={Activity} label="Grade" value={getAggregatePercentage(activeTerm) > 90 ? 'Exceptional' : 'Outstanding'} color="text-indigo-600" bg="bg-indigo-50" />
+                <StatCard icon={Star} label="Best Area" value={subjects[examData[activeTerm].marks.indexOf(Math.max(...examData[activeTerm].marks))]} color="text-amber-600" bg="bg-amber-50" />
             </div>
 
             {/* Analysis Dashboard Section */}
             <div className="grid lg:grid-cols-3 gap-6 md:gap-8">
                 {/* Table: Subject Breakdown */}
                 <Card className="lg:col-span-2 overflow-hidden flex flex-col p-0">
-                    <div className="p-5 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="p-4 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div className="flex items-center gap-3">
                             <div className="p-2 md:p-2.5 bg-slate-900 text-white rounded-xl shadow-lg"><BarChart size={18} className="md:w-5 md:h-5" /></div>
                             <div>
-                                <h3 className="text-lg md:text-xl font-bold text-slate-800">{examData[activeTerm].name} Detailed Analysis</h3>
-                                <p className="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">Select subject for trend analysis</p>
+                                <h3 className="text-lg md:text-xl font-bold text-slate-800 leading-tight">{examData[activeTerm].name} Detailed Results</h3>
+                                <p className="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">Growth Trend Analysis</p>
                             </div>
                         </div>
                         {selectedSubject !== null && (
@@ -251,19 +251,19 @@ const Academics: React.FC = () => {
                                 onClick={() => setSelectedSubject(null)}
                                 className="flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest text-teal-600 hover:text-teal-700 bg-teal-50 px-3 py-2 rounded-lg border border-teal-100 transition-all active:scale-95"
                             >
-                                <RefreshCw size={12} /> Reset Graph
+                                <RefreshCw size={12} /> Reset View
                             </button>
                         )}
                     </div>
 
-                    <div className="overflow-x-auto no-scrollbar pb-6 px-4 md:px-8">
-                        <table className="w-full text-left">
+                    <div className="overflow-x-auto px-4 md:px-8 pb-6">
+                        <table className="w-full text-left min-w-[300px]">
                             <thead>
                                 <tr className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-slate-400 border-b border-slate-100">
                                     <th className="pb-4 font-black">Subject</th>
                                     <th className="pb-4 font-black text-center">Marks</th>
-                                    <th className="pb-4 font-black hidden sm:table-cell text-center">Efficiency</th>
-                                    <th className="pb-4 font-black text-right pr-2">Actions</th>
+                                    <th className="pb-4 font-black hidden sm:table-cell text-center">Performance</th>
+                                    <th className="pb-4 font-black text-right pr-2">Growth</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-50">
@@ -280,27 +280,26 @@ const Academics: React.FC = () => {
                                             onClick={() => setSelectedSubject(idx)}
                                         >
                                             <td className="py-4 md:py-5">
-                                                <div className="flex items-center gap-3 md:gap-4">
+                                                <div className="flex items-center gap-2 md:gap-4">
                                                     <div 
-                                                        className={`w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center transition-all ${isSelected ? 'bg-white shadow-md' : 'bg-slate-100 opacity-70 group-hover:opacity-100'}`}
+                                                        className={`w-7 h-7 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center transition-all ${isSelected ? 'bg-white shadow-md' : 'bg-slate-100 opacity-70'}`}
                                                         style={{ color: colors[idx] }}
                                                     >
-                                                        {sub === 'Maths' ? <Calculator size={16} /> : sub === 'Tamil' ? <Globe size={16} /> : <BookOpen size={16} />}
+                                                        {sub === 'Maths' ? <Calculator size={14} className="md:w-[18px] md:h-[18px]" /> : sub === 'Tamil' ? <Globe size={14} className="md:w-[18px] md:h-[18px]" /> : <BookOpen size={14} className="md:w-[18px] md:h-[18px]" />}
                                                     </div>
                                                     <div>
-                                                        <span className={`font-bold text-xs md:text-sm block ${isSelected ? 'text-slate-900' : 'text-slate-600'}`}>{sub}</span>
-                                                        <span className="text-[9px] text-slate-400 hidden md:block">Academic Year 2024-25</span>
+                                                        <span className={`font-bold text-[11px] md:text-sm block ${isSelected ? 'text-slate-900' : 'text-slate-600'}`}>{sub}</span>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className={`py-4 md:py-5 text-center font-mono font-black text-xs md:text-sm ${isSelected ? 'text-teal-600' : 'text-slate-500'}`}>
-                                                {score}<span className="text-[10px] opacity-30 ml-1 font-sans">/{maxSub}</span>
+                                            <td className={`py-4 md:py-5 text-center font-mono font-black text-[11px] md:text-sm ${isSelected ? 'text-teal-600' : 'text-slate-500'}`}>
+                                                {score}<span className="text-[9px] opacity-30 ml-0.5 md:ml-1 font-sans">/{maxSub}</span>
                                             </td>
                                             <td className="py-4 md:py-5 px-4 hidden sm:table-cell">
                                                 <div className="flex items-center gap-3">
                                                     <div className="flex-1 h-1.5 bg-slate-100 rounded-full overflow-hidden min-w-[60px]">
                                                         <div 
-                                                            className="h-full rounded-full transition-all duration-1000 ease-out shadow-[0_0_8px_rgba(20,184,166,0.2)]" 
+                                                            className="h-full rounded-full transition-all duration-1000 ease-out" 
                                                             style={{ width: `${percent}%`, backgroundColor: colors[idx] }}
                                                         ></div>
                                                     </div>
@@ -308,7 +307,7 @@ const Academics: React.FC = () => {
                                                 </div>
                                             </td>
                                             <td className="py-4 md:py-5 text-right pr-2">
-                                                <div className={`inline-flex items-center justify-center w-6 h-6 md:w-8 md:h-8 rounded-full border ${isSelected ? 'bg-teal-500 text-white border-teal-500 shadow-lg shadow-teal-500/30' : 'bg-slate-50 text-slate-300 border-slate-100 group-hover:border-slate-200 group-hover:text-slate-400'} transition-all`}>
+                                                <div className={`inline-flex items-center justify-center w-6 h-6 md:w-8 md:h-8 rounded-full border ${isSelected ? 'bg-teal-500 text-white border-teal-500 shadow-md' : 'bg-slate-50 text-slate-300 border-slate-100'} transition-all`}>
                                                     <ChevronRight size={14} className={isSelected ? 'animate-pulse' : ''} />
                                                 </div>
                                             </td>
@@ -320,13 +319,13 @@ const Academics: React.FC = () => {
                     </div>
                 </Card>
 
-                {/* Score Distrubtion Card */}
+                {/* Subject Share Distribution */}
                 <Card className="flex flex-col items-center justify-between space-y-6 md:space-y-8 bg-gradient-to-br from-white to-slate-50 border-slate-200">
                     <div className="w-full flex items-center gap-3">
                         <div className="p-2 bg-slate-900 text-white rounded-xl shadow-lg"><PieChart size={18} /></div>
                         <div>
-                            <h3 className="text-lg font-bold text-slate-800 leading-tight">Subject Balance</h3>
-                            <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Mark distribution across core subjects</p>
+                            <h3 className="text-lg font-bold text-slate-800 leading-tight">Subject Share</h3>
+                            <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Weighted score comparison</p>
                         </div>
                     </div>
                     
@@ -355,15 +354,14 @@ const Academics: React.FC = () => {
             {/* Performance Trend Comparison Chart */}
             <RevealOnScroll>
                 <Card className="relative overflow-hidden group border-slate-200 p-4 md:p-8">
-                    {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-48 h-48 md:w-80 md:h-80 bg-teal-500/5 rounded-full blur-[60px] md:blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
                     
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 md:mb-12 relative z-10">
                         <div className="flex items-center gap-3 md:gap-4">
                             <div className="p-2.5 md:p-3 bg-teal-600 text-white rounded-xl md:rounded-2xl shadow-xl shadow-teal-500/20"><TrendingUp size={20} className="md:w-6 md:h-6" /></div>
                             <div>
-                                <h3 className="text-lg md:text-2xl font-black text-slate-800 tracking-tight">
-                                    {selectedSubject === null ? 'Academic Progression Trend' : `${subjects[selectedSubject]} Growth Analysis`}
+                                <h3 className="text-lg md:text-2xl font-black text-slate-800 tracking-tight leading-tight">
+                                    {selectedSubject === null ? 'Progression Trend' : `${subjects[selectedSubject]} Growth`}
                                 </h3>
                                 <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5 md:mt-1">Tracking performance across terms</p>
                             </div>
@@ -371,7 +369,7 @@ const Academics: React.FC = () => {
                         <div className="hidden sm:flex bg-slate-100/80 backdrop-blur-sm p-1.5 rounded-xl border border-slate-200">
                             <div className="flex items-center gap-2.5 px-3">
                                 <Info size={12} className="text-teal-500" />
-                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Interact with data points</span>
+                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Interact for data</span>
                             </div>
                         </div>
                     </div>
@@ -379,15 +377,14 @@ const Academics: React.FC = () => {
                     <PerformanceChart />
 
                     <div className="mt-6 md:mt-8 p-6 md:p-8 bg-slate-900 rounded-2xl md:rounded-[2rem] text-white flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 relative overflow-hidden">
-                        {/* Decorative Pattern */}
                         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
                         
                         <div className="relative z-10 space-y-1 md:space-y-2 text-center md:text-left">
-                            <h4 className="text-teal-400 font-black text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em]">Quick Performance Insight</h4>
+                            <h4 className="text-teal-400 font-black text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em]">Insights</h4>
                             <p className="text-sm md:text-xl font-bold md:font-black leading-snug md:leading-tight max-w-md">
                                 {selectedSubject === null 
-                                    ? `Overall consistency is high, with a peak aggregate of ${Math.max(...examData.map((_, i) => getAggregatePercentage(i))).toFixed(1)}% reached during the year.` 
-                                    : `In ${subjects[selectedSubject]}, your strongest performance was ${Math.max(...examData.map((_, i) => getSubjectPercentage(i, selectedSubject))).toFixed(1)}%. Keep it up!`}
+                                    ? `Overall consistency is high, with a peak aggregate of ${Math.max(...examData.map((_, i) => getAggregatePercentage(i))).toFixed(1)}%.` 
+                                    : `In ${subjects[selectedSubject]}, your strongest performance reached ${Math.max(...examData.map((_, i) => getSubjectPercentage(i, selectedSubject))).toFixed(1)}%.`}
                             </p>
                         </div>
                         
@@ -396,7 +393,7 @@ const Academics: React.FC = () => {
                                 onClick={() => window.print()}
                                 className="bg-white text-slate-900 px-8 py-3.5 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs hover:bg-teal-400 hover:text-white transition-all shadow-xl flex items-center justify-center gap-2 active:scale-95"
                             >
-                                <FileCheck size={16} /> Print Results
+                                <FileCheck size={16} /> Get Report Card
                             </button>
                         </div>
                     </div>
@@ -407,13 +404,15 @@ const Academics: React.FC = () => {
 };
 
 const StatCard = ({ icon: Icon, label, value, color, bg }: any) => (
-    <Card className={`group hover:-translate-y-1.5 md:hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between p-4 md:p-6 border-slate-200`}>
-        <div className={`w-9 h-9 md:w-12 md:h-12 rounded-lg md:rounded-2xl ${bg} ${color} flex items-center justify-center mb-4 md:mb-6 shadow-sm transition-transform group-hover:rotate-12 group-hover:scale-105`}>
-            <Icon size={18} className="md:w-6 md:h-6" />
+    <Card className={`group hover:-translate-y-1.5 md:hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between p-3 sm:p-4 md:p-6 border-slate-200`}>
+        <div className={`w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-2xl ${bg} ${color} flex items-center justify-center mb-3 md:mb-6 shadow-sm transition-transform group-hover:rotate-12 group-hover:scale-105`}>
+            <Icon size={16} className="md:w-6 md:h-6" />
         </div>
-        <div>
-            <p className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 md:mb-1.5">{label}</p>
-            <p className="text-xl md:text-3xl font-black text-slate-800 tracking-tighter">{value}</p>
+        <div className="overflow-hidden">
+            <p className="text-[8px] sm:text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 md:mb-1.5 truncate">{label}</p>
+            <p className="text-base sm:text-lg md:text-3xl font-black text-slate-800 tracking-tighter leading-tight break-all md:break-normal">
+                {value}
+            </p>
         </div>
     </Card>
 );
